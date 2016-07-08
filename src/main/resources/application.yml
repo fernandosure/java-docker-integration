@@ -1,0 +1,27 @@
+
+---
+
+spring:
+  profiles: local
+
+example:
+  database_url: http://127.0.0.1/local_db
+
+
+---
+
+spring:
+  profiles: docker
+
+example:
+  database_url: http://postgresql/docker_db
+
+
+---
+
+spring:
+  profiles: prod
+
+example:
+  database_url: http://72.1.127.100/prod_db
+

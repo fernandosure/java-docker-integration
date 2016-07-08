@@ -1,0 +1,38 @@
+general:
+  artifacts:
+   - "build/libs"
+   - "build/reports/tests"
+   - "build/jacocoHtml"
+
+machine:
+  java:
+    version: oraclejdk8
+
+  services:
+    - docker
+
+  environment:
+    SPRING_PROFILES_ACTIVE: docker
+
+dependencies:
+  post:
+    - docker login -e "$DOCKER_EMAIL" -u "$DOCKER_USER" -p "$DOCKER_PASS"
+
+test:
+   override:
+    - ./gradlew build
+
+deployment:
+  dev:
+    branch: develop
+    commands:
+      - ./gradlew buildDocker
+      - docker tag fernandosure/$CIRCLE_PROJECT_REPONAME fernandosure/$CIRCLE_PROJECT_REPONAME:dev
+      - docker push fernandosure/$CIRCLE_PROJECT_REPONAME:dev
+  production:
+    branch: master
+    commands:
+      - ./gradlew buildDocker
+      - docker tag fernandosure/$CIRCLE_PROJECT_REPONAME fernandosure/$CIRCLE_PROJECT_REPONAME:prod
+      - docker push fernandosure/$CIRCLE_PROJECT_REPONAME:prod
+      - docker push fernandosure/$CIRCLE_PROJECT_REPONAME:latest

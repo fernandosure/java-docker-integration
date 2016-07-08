@@ -1,0 +1,9 @@
+server:
+  port: ${PORT:5000}
+
+spring:
+  application:
+    name: java-docker-integration
+
+  profiles:
+    active: local
