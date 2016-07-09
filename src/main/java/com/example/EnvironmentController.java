@@ -18,4 +18,8 @@ public class EnvironmentController {
         return databaseUrl;
     }
 
+    @RequestMapping(value="/host")
+    public String GetCurrentHost() {
+        return System.getenv("HOSTNAME");
+    }
 }
