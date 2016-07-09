@@ -1,0 +1,10 @@
+java-docker-integration:
+    image: fernandosure/java-docker-integration
+    ports:
+      - "80:5000"
+    autorestart: always
+    deployment_strategy: high_availability
+    target_num_containers: 1
+    tags:
+      - demo
+    autoredeploy: true

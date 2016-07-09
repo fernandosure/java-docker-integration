@@ -3,7 +3,6 @@ general:
    - "build/libs"
    - "build/reports/tests"
 
-
 machine:
   java:
     version: oraclejdk8
@@ -11,21 +10,14 @@ machine:
   services:
     - docker
 
-  environment:
-    SPRING_PROFILES_ACTIVE: docker
-
-dependencies:
-  post:
-    - docker login -e "$DOCKER_EMAIL" -u "$DOCKER_USER" -p "$DOCKER_PASS"
-
 test:
    override:
     - ./gradlew build
-
 
 deployment:
   production:
     branch: master
     commands:
       - ./gradlew buildDocker
+      - docker login -e "$DOCKER_EMAIL" -u "$DOCKER_USER" -p "$DOCKER_PASS"
       - docker push fernandosure/java-docker-integration
