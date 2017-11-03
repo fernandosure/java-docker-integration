@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
  * Created by fernando on 8/07/16.
  */
 
+
 @RestController
 public class EnvironmentController {
     @Value("${example.database_url}")
