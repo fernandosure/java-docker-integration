@@ -20,4 +20,9 @@ deployment:
     commands:
       - ./gradlew buildDocker
       - docker login -e "$DOCKER_EMAIL" -u "$DOCKER_USER" -p "$DOCKER_PASS"
-      - docker push fernandosure/java-docker-integration
+
+      # - docker push fernandosure/java-docker-integration
+      - docker push fernandosure/$CIRCLE_PROJECT_REPONAME:latest
+
+      - docker tag fernandosure/$CIRCLE_PROJECT_REPONAME fernandosure/$CIRCLE_PROJECT_REPONAME:$CIRCLE_BUILD_NUM
+      - docker push fernandosure/$CIRCLE_PROJECT_REPONAME:$CIRCLE_BUILD_NUM
