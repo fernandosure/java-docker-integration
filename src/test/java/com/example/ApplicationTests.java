@@ -30,7 +30,7 @@ public class ApplicationTests {
 
     @Test
     public void testControllerReturnsHelloWorld() throws Exception {
-        mockMvc.perform(get("/")).andExpect(content().string("Hello World v2"));
+        mockMvc.perform(get("/")).andExpect(content().string("Hello World"));
     }
 
 
